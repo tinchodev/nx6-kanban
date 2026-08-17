@@ -4,6 +4,7 @@ namespace GitScrum\Classes;
 
 use Auth;
 use Carbon;
+use Illuminate\Support\Str;
 use GitScrum\Models\Branch;
 use GitScrum\Models\User;
 use GitScrum\Models\Issue;
@@ -185,7 +186,7 @@ class Gitea implements ProviderInterface
     public function createOrUpdateRepository($owner, $obj, $oldTitle = null)
     {
         $params = [
-            'name' => str_slug($obj->title, '-'),
+            'name' => Str::slug($obj->title, '-'),
             'description' => $obj->description,
         ];
 

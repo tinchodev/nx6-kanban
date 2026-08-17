@@ -6,7 +6,7 @@
         <a href="{{route('product_backlogs.show', ['slug' => $list->slug])}}">
         {{$list->title}}</a>
         <div class="info">
-            <span><strong>{{str_plural('User story', $list->userStories->count())}}</strong>: {{$list->userStories->count()}}</span>
+            <span><strong>{{\Illuminate\Support\Str::plural('User story', $list->userStories->count())}}</strong>: {{$list->userStories->count()}}</span>
             <span><strong>{{trans('gitscrum.sprints')}}:</strong> {{$list->sprints->where('closed_at', NULL)->count()}}
                 {{trans
             ('gitscrum.open')}} /

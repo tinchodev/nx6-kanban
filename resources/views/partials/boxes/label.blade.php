@@ -4,7 +4,7 @@
 
     <ul class="tag-list list-inline" style="padding: 0">
         @foreach($list as $listItem)
-            @include('partials.lists.labels', ['list' => $listItem , 'model' => camel_case($type) ])
+            @include('partials.lists.labels', ['list' => $listItem , 'model' => \Illuminate\Support\Str::camel($type) ])
         @endforeach
     </ul>
 
