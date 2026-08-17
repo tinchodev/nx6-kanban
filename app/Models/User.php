@@ -2,6 +2,7 @@
 
 namespace GitScrum\Models;
 
+use GitScrum\Classes\Helper;
 use GitScrum\Presenters\UserPresenter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -113,5 +114,10 @@ class User extends Authenticatable
         return User::whereHas('organizations', function ($query) use ($organizationIds) {
             $query->whereIn('organizations.id', $organizationIds);
         })->where('id', '!=', $this->id)->get();
+    }
+
+    public function burndown($subDays = 5)
+    {
+        return Helper::burndown($this, $subDays);
     }
 }
