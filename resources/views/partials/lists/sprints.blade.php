@@ -26,7 +26,7 @@
                 @include('partials.boxes.progress-bar', [ 'percentage' => Helper::percentage($list, 'issues')])
                 <span>
                     <strong>{{trans('gitscrum.timebox')}}:</strong>
-                    {{$list->timebox}} ( {{ $list->scopeWeeks(date('Y-m-d')) }} {{ str_plural(trans('gitscrum.week'), $list->scopeWeeks(date('Y-m-d'))) }})
+                    {{$list->timebox}} ( {{ $list->scopeWeeks(date('Y-m-d')) }} {{ \Illuminate\Support\Str::plural(trans('gitscrum.week'), $list->scopeWeeks(date('Y-m-d'))) }})
                 </span>
                 <span>
                     <strong>{{trans('gitscrum.issues')}}:</strong> {{$list->issues->where('closed_at', NULL)->count()}}

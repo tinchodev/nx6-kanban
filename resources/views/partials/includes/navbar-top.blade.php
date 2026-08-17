@@ -25,7 +25,7 @@
                             <img src="{{Auth::user()->avatar}}" class="avatar" />
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('user.profile',['slug' => Auth::user()->username])}}">
+                            <li><a href="{{route('user.profile',['username' => Auth::user()->username])}}">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                     {{trans('gitscrum.profile')}}</a></li>
                             <li><a href="{{route('issues.index',['slug' => 0])}}">

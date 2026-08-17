@@ -4,6 +4,7 @@ namespace GitScrum\Classes;
 
 use Auth;
 use Carbon;
+use Illuminate\Support\Str;
 use GitScrum\Models\Branch;
 use GitScrum\Models\User;
 use GitScrum\Models\Issue;
@@ -128,7 +129,7 @@ class Github implements ProviderInterface
     public function createOrUpdateRepository($owner, $obj, $oldTitle = null)
     {
         $params = [
-            'name' => str_slug($obj->title, '-'),
+            'name' => Str::slug($obj->title, '-'),
             'description' => $obj->description,
         ];
 
@@ -141,7 +142,7 @@ class Github implements ProviderInterface
 
             $response = Helper::request($endpoint, true, 'POST', $params);
         } else {
-            $oldTitle = str_slug($oldTitle, '-');
+            $oldTitle = Str::slug($oldTitle, '-');
             $response = Helper::request('https://api.github.com/repos/'.$owner.DIRECTORY_SEPARATOR.$oldTitle, true, 'POST', $params);
         }
 

@@ -7,6 +7,7 @@ use GitScrum\Models\IssueType;
 use GitScrum\Models\ConfigIssueEffort;
 use Auth;
 use Carbon;
+use Illuminate\Support\Str;
 
 class Helper
 {
@@ -24,7 +25,7 @@ class Helper
 
     public static function slug($value)
     {
-        return str_slug(substr($value, 0, 40).'-'.uniqid());
+        return Str::slug(substr($value, 0, 40).'-'.uniqid());
     }
 
     public static function percentage($model, $feature)

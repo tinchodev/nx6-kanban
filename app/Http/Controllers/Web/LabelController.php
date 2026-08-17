@@ -3,6 +3,7 @@
 namespace GitScrum\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use GitScrum\Http\Requests\LabelRequest;
 use GitScrum\Models\Label;
 
@@ -14,7 +15,7 @@ class LabelController extends Controller
 
         return view('labels.index')
             ->with('label', $label)
-            ->with('listPartial', kebab_case($model))
+            ->with('listPartial', Str::kebab($model))
             ->with('list', $label->$model()->paginate(env('APP_PAGINATE')));
     }
 

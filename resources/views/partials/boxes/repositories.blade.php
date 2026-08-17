@@ -24,7 +24,7 @@
                 @if(in_array('organization', $columns))
                     <p> <small>{{trans('gitscrum.organization')}}: {{$value->organization_title}}</small></p>
                 @endif
-                <small>{{str_limit($value->description, 120)}}</small>
+                <small>{{\Illuminate\Support\Str::limit($value->description, 120)}}</small>
             </td>
             @endif
 
