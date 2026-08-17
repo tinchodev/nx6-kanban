@@ -29,6 +29,6 @@
 
 </head>
 
-<body class="{{$bodyClass or ''}}">
+<body class="{{$bodyClass ?? ''}}">
 
 <div class="loader-area"></div>

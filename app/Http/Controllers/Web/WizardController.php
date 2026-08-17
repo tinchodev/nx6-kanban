@@ -9,6 +9,11 @@ use Auth;
 
 class WizardController extends Controller
 {
+    public function install()
+    {
+        return view('wizard.install');
+    }
+
     public function step1()
     {
         $repositories = (object) app(Auth::user()->provider)->readRepositories();

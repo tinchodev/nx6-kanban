@@ -1,6 +1,6 @@
 <form id="storeIssueForm" action="{{route($route, ['slug'=>@$issue->slug])}}" method="post" class="form-horizontal">
     {{ csrf_field() }}
-    <input type="hidden" name="product_backlog_id" value="{{$obj->productBacklog->id or $issue->productBacklog->id}}">
+    <input type="hidden" name="product_backlog_id" value="{{$obj->productBacklog->id ?? $issue->productBacklog->id}}">
 
     @if($relation == 'user_stories')
     <input type="hidden" name="user_story_id" value="{{$obj->id}}">
@@ -55,7 +55,7 @@
     <div class="form-group">
         <label class="col-sm-12">{{trans('gitscrum.issue')}}</label>
         <div class="col-sm-12">
-            <input name="title" type="text" class="form-control" value="{{ $issue->title or '' }}"
+            <input name="title" type="text" class="form-control" value="{{ $issue->title ?? '' }}"
                 pattern=".{2,255}" title="{{trans('gitscrum.title-must-be-between-2-and-255-characters')}}"
                 autocomplete="off" maxlength="255" required>
         </div>
@@ -63,7 +63,7 @@
     <div class="form-group">
         <label class="col-sm-12">{{trans('gitscrum.description')}} ({{trans('gitscrum.optional')}})</label>
         <div class="col-sm-12">
-            <textarea name="description" class="form-control" data-provide="markdown" style="padding:10px;">{{ $issue->markdownDescription or '' }}</textarea>
+            <textarea name="description" class="form-control" data-provide="markdown" style="padding:10px;">{{ $issue->markdownDescription ?? '' }}</textarea>
         </div>
     </div>
     <div class="form-group">

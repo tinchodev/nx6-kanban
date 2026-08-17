@@ -4,7 +4,7 @@
     <div class="form-group">
         <div class="input-group">
             <input class="form-control" type="text" name="{{@$query}}" value="{{@$search}}"
-                autocomplete="off" placeholder="{{ $txtSearch or trans('gitscrum.search') }}">
+                autocomplete="off" placeholder="{{ $txtSearch ?? trans('gitscrum.search') }}">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">{{trans('gitscrum.search')}}!</button>
             </span>

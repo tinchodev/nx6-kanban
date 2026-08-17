@@ -38,8 +38,8 @@
     {{trans('gitscrum.effort')}}: {{$issue->configEffort->title}}</span>
 <span @if ( $issue->closed_at ) style="text-decoration: line-through;" @endif>
     {{$issue->title}}</span>
-<a href="{{route('issue_types.index', ['sprint_slug' => $issue->sprintSlug,
-    'type_slug' => $issue->type->slug])}}" class="pull-right">
+<a href="{{route('issue_types.index', ['slug_sprint' => $issue->sprint?->slug,
+    'slug_type' => $issue->type->slug])}}" class="pull-right">
     <span class="label" style="background-color:#{{$issue->type->color}}">
     {{$issue->type->title}}</span></a>
 
