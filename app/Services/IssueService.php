@@ -27,7 +27,7 @@ class IssueService extends Service
         return $issue;
     }
 
-    public function updateStatus(Issue $issue = null, $status = null, $position = null)
+    public function updateStatus(?Issue $issue = null, $status = null, $position = null)
     {
         if (is_null($issue)) {
             $issue = Issue::slug($this->getRequest()->slug)
@@ -57,7 +57,7 @@ class IssueService extends Service
         }
     }
 
-    private function saveStatus(Issue $issue, ConfigStatus $configStatus = null, $position = null)
+    private function saveStatus(Issue $issue, ?ConfigStatus $configStatus = null, $position = null)
     {
         $issue->config_status_id = $this->getRequest()->status_id;
 
