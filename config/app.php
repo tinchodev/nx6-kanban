@@ -142,67 +142,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
-    |--------------------------------------------------------------------------
-    |
-    | The service providers listed here will be automatically loaded on the
-    | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
-    |
-    */
-
-    'providers' => [
-
-        /*
-         * Laravel Framework Service Providers...
-         */
-        Illuminate\Auth\AuthServiceProvider::class,
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
-        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Database\DatabaseServiceProvider::class,
-        Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
-        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-        Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
-        Illuminate\Notifications\NotificationServiceProvider::class,
-        Illuminate\Pagination\PaginationServiceProvider::class,
-        Illuminate\Pipeline\PipelineServiceProvider::class,
-        Illuminate\Queue\QueueServiceProvider::class,
-        Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
-        Illuminate\Translation\TranslationServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
-
-        /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
-        GitScrum\Providers\AppServiceProvider::class,
-        GitScrum\Providers\AuthServiceProvider::class,
-        // GitScrum\Providers\BroadcastServiceProvider::class,
-        GitScrum\Providers\ModelObserverProvider::class,
-        GitScrum\Providers\EventServiceProvider::class,
-        GitScrum\Providers\RouteServiceProvider::class,
-        GitScrum\Providers\SlackServiceProvider::class,
-
-        SocialiteProviders\Manager\ServiceProvider::class,
-        Spatie\Fractal\FractalServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        RenatoMarinho\LaravelMultiLanguage\MultiLanguageServiceProvider::class
-
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
     |
@@ -249,7 +188,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Fractal' => Spatie\Fractal\FractalFacade::class,
         'Helper' => GitScrum\Classes\Helper::class,
 
     ],
