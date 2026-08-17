@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        APP_UID: ${APP_UID:-1000}
+        APP_GID: ${APP_GID:-1000}
+    ports:
+      - "8000:8000"
+    environment:
+      DB_DATABASE: gitscrum
+      DB_USERNAME: gitscrum
+      DB_PASSWORD: gitscrum
+    volumes:
+      - .:/var/www/html
+      - app-vendor:/var/www/html/vendor
+      - app-node-modules:/var/www/html/node_modules
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gitscrum
+      MYSQL_USER: gitscrum
+      MYSQL_PASSWORD: gitscrum
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-proot", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql-data:
+  app-vendor:
+  app-node-modules:
