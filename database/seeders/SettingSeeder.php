@@ -1,5 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
+use Database\Seeders\Setting\ConfigIssueEffortsTableSeeder;
+use Database\Seeders\Setting\ConfigPrioritiesTableSeeder;
+use Database\Seeders\Setting\ConfigStatusesTableSeeder;
+use Database\Seeders\Setting\IssueTypesTableSeeder;
 use Illuminate\Database\Seeder;
 
 class SettingSeeder extends Seeder

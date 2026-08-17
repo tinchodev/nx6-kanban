@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders\Setting;
+
 use Illuminate\Database\Seeder;
 
 class ConfigIssueEffortsTableSeeder extends Seeder

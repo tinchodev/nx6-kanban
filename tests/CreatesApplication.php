@@ -22,14 +22,14 @@ trait CreatesApplication
         return $app;
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->artisan('migrate');
-        $this->seed('DummySeeder');
+        $this->seed(\Database\Seeders\DummySeeder::class);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->artisan('migrate:reset');
         parent::tearDown();
