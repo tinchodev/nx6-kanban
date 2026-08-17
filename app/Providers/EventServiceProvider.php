@@ -13,9 +13,6 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'GitScrum\Events\SomeEvent' => [
-            'GitScrum\Listeners\EventListener',
-        ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             'SocialiteProviders\GitLab\GitLabExtendSocialite@handle',
         ],
