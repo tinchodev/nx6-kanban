@@ -3,28 +3,23 @@
 namespace GitScrum\Services;
 
 use GitScrum\Contracts\SlackInterface;
+use Illuminate\Support\Facades\Http;
 use Log;
-use Maknz\Slack\Client;
 
 class SlackService implements SlackInterface
 {
     const ISSUE_ASSIGNATION = 1;
     const STATUS_UPDATE = 2;
 
-    private $client;
-    private $settings;
+    private $webhookUrl;
+    private $channel;
+    private $username;
 
     public function __construct()
     {
-        $this->settings = [
-            'channel' => env('SLACK_CHANNEL', ''),
-            'username' => env('SLACK_BOT_NAME', ''),
-            'icon' => ':page_facing_up:',
-            'unfurl_links' => true,
-            'link_names' => 1,
-            'allow_markdown' => 1,
-        ];
-        $this->client = new Client(env('SLACK_WEBHOOK', ''), $this->settings);
+        $this->webhookUrl = env('SLACK_WEBHOOK', '');
+        $this->channel = env('SLACK_CHANNEL', '');
+        $this->username = env('SLACK_BOT_NAME', '');
     }
 
     /**
@@ -36,19 +31,30 @@ class SlackService implements SlackInterface
      */
     public function send($content, $type = 0)
     {
-        if (empty($this->client->getEndpoint()) || empty($this->client->getDefaultChannel())
-            || empty($this->client->getDefaultUsername())) {
+        if (empty($this->webhookUrl) || empty($this->channel) || empty($this->username)) {
             Log::info('One or more settings are missing, Slack notifications are not availables');
 
             return;
         }
 
         $message = $this->buildMessage($content, $type);
-        $this->client->attach([
-            'title' => $content['title'],
-            'title_link' => $content['url'],
-            'color' => 'good',
-        ])->enableMarkdown()->send($message);
+
+        Http::post($this->webhookUrl, [
+            'text' => $message,
+            'channel' => $this->channel,
+            'username' => $this->username,
+            'icon_emoji' => ':page_facing_up:',
+            'unfurl_links' => true,
+            'link_names' => 1,
+            'mrkdwn' => true,
+            'attachments' => [
+                [
+                    'title' => $content['title'],
+                    'title_link' => $content['url'],
+                    'color' => 'good',
+                ],
+            ],
+        ]);
     }
 
     /**
