@@ -25,6 +25,7 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.3",
         "nesbot/carbon": "^2.72|^3.0",
         "socialiteproviders/gitlab": "^4.1"
     },

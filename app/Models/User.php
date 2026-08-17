@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use GitScrum\Scopes\GlobalScope;
 use GitScrum\Scopes\UserScope;
 use GitScrum\Presenters\GlobalPresenter;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -16,6 +17,7 @@ class User extends Authenticatable
     use UserScope;
     use GlobalPresenter;
     use UserPresenter;
+    use HasApiTokens;
     /**
      * The database table used by the model.
      *

@@ -124,3 +124,9 @@ Route::group(['prefix' => 'wizard', 'middleware' => ['user.authenticated']], fun
 });
 
 Route::put('/slack', 'GitScrum\Http\Controllers\Web\SlackUserController@update')->name('slack.update')->middleware('user.authenticated');
+
+Route::group(['prefix' => 'account/api-tokens', 'middleware' => ['user.authenticated']], function () {
+    Route::get('/', 'GitScrum\Http\Controllers\Web\ApiTokenController@index')->name('account.api-tokens.index');
+    Route::post('/', 'GitScrum\Http\Controllers\Web\ApiTokenController@store')->name('account.api-tokens.store');
+    Route::delete('/{id}', 'GitScrum\Http\Controllers\Web\ApiTokenController@destroy')->name('account.api-tokens.destroy');
+});
