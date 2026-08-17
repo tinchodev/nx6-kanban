@@ -1,19 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "prod": "gulp --production",
-    "dev": "gulp watch"
+    "dev": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
-    "clean-css": "^3.4.19",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.0.3",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-clean-css": "^2.0.12",
-    "gulp-concat": "*",
-    "gulp-uglify": "*",
-    "gulp-phpcs": "*",
-    "gulp-shell": "*",
-    "gulp-minify": "*"
+    "laravel-vite-plugin": "^1.0",
+    "less": "^4.2",
+    "vite": "^6.0"
   }
 }

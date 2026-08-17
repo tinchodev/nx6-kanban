@@ -16,10 +16,6 @@
     <link href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('css/core.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/colors.css') }}" rel="stylesheet" type="text/css" />
-    
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
@@ -29,8 +25,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/js/bootstrap-markdown.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js" type="text/javascript"></script>
 
-    <script src="{{ asset('js/core.js') }}" type="text/javascript"></script>
-    
+    @vite(['resources/assets/core/less/app.less', 'resources/assets/core/less/colors/default.less', 'resources/assets/core/js/app.js'])
+
 </head>
 
 <body class="{{$bodyClass or ''}}">
