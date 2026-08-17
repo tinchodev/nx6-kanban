@@ -1,5 +1,5 @@
 <div class="notes">
-    <h4 class="gs-card-title">{{ $title or trans('gitscrum.small-notes')}}</h4>
+    <h4 class="gs-card-title">{{ $title ?? trans('gitscrum.small-notes')}}</h4>
 
     <div class="gs-card-content">
 

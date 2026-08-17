@@ -2,6 +2,7 @@
 
 namespace GitScrum\Models;
 
+use GitScrum\Classes\Helper;
 use GitScrum\Presenters\UserPresenter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -89,5 +90,34 @@ class User extends Authenticatable
     {
         return $this->morphMany(Note::class, 'noteable')
             ->orderby('position', 'ASC');
+    }
+
+    public function productBacklogs()
+    {
+        return $this->hasMany(ProductBacklog::class, 'user_id', 'id');
+    }
+
+    public function sprints()
+    {
+        return $this->hasMany(Sprint::class, 'user_id', 'id');
+    }
+
+    public function activities()
+    {
+        return $this->statuses()->with(['user', 'configStatus'])->orderBy('created_at', 'DESC')->get();
+    }
+
+    public function team()
+    {
+        $organizationIds = $this->organizations()->pluck('organizations.id');
+
+        return User::whereHas('organizations', function ($query) use ($organizationIds) {
+            $query->whereIn('organizations.id', $organizationIds);
+        })->where('id', '!=', $this->id)->get();
+    }
+
+    public function burndown($subDays = 5)
+    {
+        return Helper::burndown($this, $subDays);
     }
 }

@@ -13,8 +13,8 @@
     </div>
 
     @if(isset($card->sprint))
-    <a href="{{route('issue_types.index', ['sprint_slug' => $card->sprint->slug,
-        'type_slug' => $card->type->slug])}}">
+    <a href="{{route('issue_types.index', ['slug_sprint' => $card->sprint->slug,
+        'slug_type' => $card->type->slug])}}">
         <span class="label label-primary" style="background-color:#{{$card->type->color}}">
     {{$card->type->title}}</span></a>
     @else

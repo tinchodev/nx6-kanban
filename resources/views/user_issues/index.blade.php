@@ -17,8 +17,6 @@
 
 @section('content')
 
-    @include('partials.header-user', ['user' => $user])
-
     <div class="col-lg-9">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
