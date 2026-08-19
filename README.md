@@ -49,9 +49,10 @@ Learm more about GitScrum and Agile Methodologies : <b>https://magazine.gitscrum
 <b><a href="#license">License</a></b>
 </p>
 
-[![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-brightgreen.svg?style=flat-square)](http://laravel.com)
-[![Total Downloads](http://poser.pugx.org/gitscrum-ce/laravel-gitscrum/downloads)](https://packagist.org/packages/gitscrum-ce/laravel-gitscrum)
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/GitScrum-Community/laravel-gitscrum/blob/master/LICENSE.md)
+[![Laravel 12](https://img.shields.io/badge/Laravel-12-brightgreen.svg?style=flat-square)](http://laravel.com)
+[![PHP 8.4](https://img.shields.io/badge/PHP-8.4-777bb4.svg?style=flat-square)](https://www.php.net/)
+[![CI](https://img.shields.io/github/actions/workflow/status/tinchodev/nx6-kanban/ci.yml?branch=master&style=flat-square&label=CI)](https://github.com/tinchodev/nx6-kanban/actions/workflows/ci.yml)
+[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](./LICENSE.md)
 
 <hr>
 
@@ -64,9 +65,22 @@ Learm more about GitScrum and Agile Methodologies : <b>https://magazine.gitscrum
 
 <hr>
 
+## About This Fork
+
+This repository ([tinchodev/nx6-kanban](https://github.com/tinchodev/nx6-kanban)) is a modernized fork of GitScrum Community Edition, originally released in 2016/2017 on Laravel 5.4/PHP 7.1. It has since been upgraded to a current, actively runnable stack:
+
+- **Laravel 12 / PHP 8.4**, migrated directly from Laravel 5.5 (dependencies audited and replaced or removed where abandoned).
+- **Vite** asset pipeline, replacing the original Gulp 3 setup.
+- A **Sanctum token-based REST API** for Issues (`/api/v1/issues`), with token management at `/account/api-tokens`.
+- **GitHub Actions CI** running lint, build, migrations, a route smoke-test, and PHPUnit on every push/PR.
+- A **Docker Compose** local dev environment (PHP 8.4 + Node 22, no host toolchain required).
+- A **GitHub Actions deploy workflow** for shared hosting environments.
+
+See [Overview](#overview) below for GitScrum's original feature set, which this fork preserves.
+
 ## Overview
 
-This version available here is the first code of the GitScrum application developed in 2016 and supported until 2017.
+This version available here is the first code of the GitScrum application developed in 2016 and supported until 2017, since modernized as described [above](#about-this-fork).
 
 It's a free and open source version, if you want to know the current GitScrum, go to our website [ https://site.gitscrum.com ]
 
@@ -96,31 +110,38 @@ GitScrum can be integrated with **Github** or **Gitlab** or **Bitbucket**.
 
 ## GitScrum Open Source - Installation
 
-The requirements to Laravel GitScrum application is:
+The requirements for this fork are:
 
-- **PHP - Supported Versions**: >= 7.1
+- **PHP**: >= 8.2 (8.4 recommended)
+- **Node.js**: 22+ (for the Vite asset pipeline)
 - **Webserver**: Nginx or Apache
 - **Database**: MySQL, or Maria DB
 
-[**Use Docker** - Containers: php7, nginx and mysql57](https://github.com/renatomarinho/Docker-GitScrum)
+### Docker Compose (recommended for local dev)
 
-### Composer Package
+The repo ships a `docker-compose.yml` providing PHP 8.4, Node 22 and MySQL, so no local toolchain is required:
 
 ```
-$ composer create-project gitscrum-community-edition/laravel-gitscrum --stability=stable --keep-vcs
-$ cd laravel-gitscrum
+$ git clone git@github.com:tinchodev/nx6-kanban.git
+$ cd nx6-kanban
+$ cp .env.example .env
+$ docker compose up -d
+$ docker compose exec app composer install
+$ docker compose exec app npm install
+$ docker compose exec app php artisan key:generate
+$ docker compose exec app php artisan migrate --seed
+$ docker compose exec app npm run dev   # or: npm run build
+```
+
+### Manual Git Clone
+
+```
+$ git clone git@github.com:tinchodev/nx6-kanban.git
+$ cd nx6-kanban
+$ composer install
+$ npm install && npm run build
 ```
 **Important**: If you have not yet installed composer: [Installation - Linux / Unix / OSX](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
-
-
-### Git Clone
-
-```
-$ git clone git@github.com:GitScrum-Community/laravel-gitscrum.git
-$ cd laravel-gitscrum
-$ composer update
-$ composer run-script post-root-package-install
-```
 
 
 ## Setup
@@ -235,6 +256,18 @@ PROXY_PASS=
 ```
 
 
+## REST API
+
+Issues are exposed via a token-based REST API secured with [Laravel Sanctum](https://laravel.com/docs/sanctum):
+
+- Generate a personal access token at `/account/api-tokens` (session-gated, since the app authenticates exclusively via OAuth).
+- Use the token as a Bearer token against `/api/v1/issues`.
+
+## Continuous Integration & Deployment
+
+- **CI**: every push/PR runs lint, asset build, migrations and PHPUnit via [GitHub Actions](.github/workflows/ci.yml).
+- **Deploy**: a manually-triggered [GitHub Actions workflow](.github/workflows/deploy.yml) builds the app and deploys it to shared hosting.
+
 ## Screens
 
 ![Screenshot 0](http://i.imgur.com/jejT8hY.png)
@@ -260,7 +293,7 @@ Renato Marinho: [Facebook](https://www.facebook.com/renato.marinho) / [LinkedIn]
 
 ## Contributing
 
-Contributions are always welcome! https://github.com/GitScrum-Community/laravel-gitscrum/graphs/contributors
+Contributions are always welcome! https://github.com/tinchodev/nx6-kanban/graphs/contributors
 
 
 ## License
@@ -271,6 +304,8 @@ Laravel GitScrum is licensed under the [MIT license](https://opensource.org/lice
 ## Thanks
 
 #### Translate Team : [@orionlu0916](https://github.com/orionlu0916) , [@Bebbolus](https://github.com/Bebbolus) , [@dongm2ez](https://github.com/dongm2ez), [@rizalio](https://github.com/rizalio), [@ddmler](https://github.com/ddmler), [@Assada](https://github.com/Assada), [@edbizarro](https://github.com/edbizarro), [@ngabor84](https://github.com/ngabor84), [@MarwanMohamed](https://github.com/MarwanMohamed) and Manuel Ortega
+
+#### Fork maintenance : Martin Arrua ([@tinchodev](https://github.com/tinchodev)) — Laravel 12/PHP 8.4 migration, Vite asset pipeline, Sanctum REST API, GitHub Actions CI, Docker Compose dev environment, and shared-hosting deploy pipeline.
 
 - [Laravel PHP Framework](https://github.com/laravel/laravel)
 
