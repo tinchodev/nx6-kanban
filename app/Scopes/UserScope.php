@@ -41,7 +41,7 @@ trait UserScope
 
     public function scopeUserStories($query, $user_story_id = null)
     {
-        return $this->productBacklogs()->map(function ($productBacklog) use ($user_story_id) {
+        return $this->productBacklogs()->get()->map(function ($productBacklog) use ($user_story_id) {
             $obj = $productBacklog->userStories()->get();
 
             if (!is_null($user_story_id)) {

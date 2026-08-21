@@ -4,7 +4,7 @@
         <label class="col-sm-12">{{trans('gitscrum.product-backlog')}}</label>
         <div class="col-sm-12">
             <select name="product_backlog_id" class="form-control m-b">
-                @foreach (Auth::user()->productBacklogs() as $productBacklog)
+                @foreach (Auth::user()->productBacklogs as $productBacklog)
                 <option value="{{$productBacklog->id}}"
                     @if ( @$productBacklog_id == $productBacklog->id ) selected="selected" @endif >
                         {{$productBacklog->title}} ({{$productBacklog->organization->title}})</option>
